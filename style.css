@@ -1,0 +1,13 @@
+table.container {
+	border: 1px solid black;
+}
+
+.pos {
+	width: 25px;
+	height: 25px;
+	border: 1px solid black;
+}
+
+.inline {
+	display: inline-block;
+}
