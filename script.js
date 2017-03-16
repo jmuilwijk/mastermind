@@ -27,18 +27,18 @@ var colors = [
 ];
 //	var defining
 var code = [];
-var codeLenth = 4;
+var codeLength = 4;
 var codeMax = colors.length;
 var guess = [];
 
 //	2. var combination (math random)
-function genCode(code, codeLenth, codeMax) {
-	for (var i = 0; i < codeLenth; i++) {
+function genCode(code, codeLength, codeMax) {
+	for (var i = 0; i < codeLength; i++) {
 		code.push(Math.floor(Math.random() * codeMax) + 1);
 	};
-	return code;
+	//return code;
 }
-//console.log(genCode([], 4, colors.length));		//example usage;
+//console.log(genCode(code, 4, colors.length));		//example usage;
 
 //	3. input v/d user
 for(var i = 0; i < colors.length ; i++){
@@ -64,7 +64,7 @@ function buildGuess(elm) {
 }
 
 function displayGuess(colorId) {
-	td = document.createElement("td")
+	var td = document.createElement("td")
 	td.classList.add("pos");
 	td.style.cssText = 'background-color:' + colors[colorId].color;
 	document.getElementById("guess").appendChild(td);
@@ -87,17 +87,17 @@ function initPush() {
 }
 
 function pushGuess() {
-	tr = document.createElement("tr");
-	for (var i = 0; i < codeLenth; i++) {
+	var tr = document.createElement("tr");
+	for (var i = 0; i < codeLength; i++) {
 		x = guess[i]-1;
-		td = document.createElement("td");
+		var td = document.createElement("td");
 		td.classList.add("pos");
 		td.style.cssText = 'background-color:' + colors[x].color;
 		tr.appendChild(td);
 	};
 	document.getElementById("tried").appendChild(tr);
-	console.log(guess);
-	console.log(code);
+	//console.log(guess);
+	checkCode(code, guess, codeLength)
 }
 
 function resetGuess() {
@@ -105,10 +105,33 @@ function resetGuess() {
 }
 
 //	4. check iput vs combinatie
-
-
-
-
+function checkCode(code, guess, codeLength)
+{
+	var correct = 0;
+	var almostCorrect = 0;
+	for (var i = 0; i < codeLength; i++) {
+		console.log(code[i] + " " + guess[i]);
+		if(code[i] == guess[i])
+		{
+			correct ++;
+		} else {
+			for (var j = 0; j < codeLength; j++) {
+				if(code[j] == guess[i])
+				{
+					almostCorrect ++;
+					break;
+				}			
+			}
+		}
+	};
+	console.log(correct + " red pins");
+	console.log(almostCorrect + " white pins");
+	if(correct == 4) {
+		return true;
+	}
+	return false;
+}
 
 // init app
-genCode([], 4, colors.length)
+genCode(code, 4, colors.length);
+console.log(code);
