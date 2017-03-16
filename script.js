@@ -97,11 +97,24 @@ function pushGuess() {
 	};
 	document.getElementById("tried").appendChild(tr);
 	//console.log(guess);
-	checkCode(code, guess, codeLength)
+	if(checkCode(code, guess, codeLength) == true)
+	{
+		alert("victory");
+	} else {
+		cleanUp();
+	}
 }
 
 function resetGuess() {
 	
+}
+
+function cleanUp() {
+	var guessElm = document.getElementById("guess");
+	while (guessElm.hasChildNodes()) {
+    	guessElm.removeChild(guessElm.lastChild);
+	}
+	guess = [];
 }
 
 //	4. check iput vs combinatie
