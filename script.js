@@ -30,6 +30,7 @@ var code = [];
 var codeLength = 4;
 var codeMax = colors.length;
 var guess = [];
+var buttonY, buttonN;
 
 //	2. var combination (math random)
 function genCode(code, codeLength, codeMax) {
@@ -71,19 +72,20 @@ function displayGuess(colorId) {
 }
 
 function initPush() {
-	var buttonY, buttonN;
- 	buttonY = document.createElement("button");
-	buttonY.innerHTML = "confirm";
-	buttonY.addEventListener("click", function() {
-    	pushGuess();
-	});
-	document.getElementById("guess").appendChild(buttonY);
-	buttonN = document.createElement("button");
-	buttonN.innerHTML = "reset";
-	buttonN.addEventListener("click", function() {
-    	resetGuess();
-	});
-	document.getElementById("guess").appendChild(buttonN);
+	if(typeof(buttonY) == "undefined") {
+ 		buttonY = document.createElement("button");
+		buttonY.innerHTML = "confirm";
+		buttonY.addEventListener("click", function() {
+    		pushGuess();
+		});
+		document.getElementById("guess").appendChild(buttonY);
+		buttonN = document.createElement("button");
+		buttonN.innerHTML = "reset";
+		buttonN.addEventListener("click", function() {
+    		cleanUp();
+		});
+		document.getElementById("guess").appendChild(buttonN);
+	}
 }
 
 function pushGuess() {
@@ -105,16 +107,14 @@ function pushGuess() {
 	}
 }
 
-function resetGuess() {
-	
-}
-
 function cleanUp() {
 	var guessElm = document.getElementById("guess");
 	while (guessElm.hasChildNodes()) {
     	guessElm.removeChild(guessElm.lastChild);
 	}
 	guess = [];
+	buttonY = undefined;
+	buttonN = undefined;
 }
 
 //	4. check iput vs combinatie
