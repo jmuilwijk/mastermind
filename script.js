@@ -37,9 +37,8 @@ function genCode(code, codeLength, codeMax) {
 	for (var i = 0; i < codeLength; i++) {
 		code.push(Math.floor(Math.random() * codeMax) + 1);
 	};
-	//return code;
 }
-//console.log(genCode(code, 4, colors.length));		//example usage;
+//genCode(code, 4, colors.length);		//example usage;
 
 //	3. input v/d user
 for(var i = 0; i < colors.length ; i++){
@@ -98,7 +97,6 @@ function pushGuess() {
 		tr.appendChild(td);
 	};
 	document.getElementById("tried").appendChild(tr);
-	//console.log(guess);
 	if(checkCode(code, guess, codeLength) == true)
 	{
 		alert("victory");
@@ -123,7 +121,6 @@ function checkCode(code, guess, codeLength)
 	var correct = 0;
 	var almostCorrect = 0;
 	for (var i = 0; i < codeLength; i++) {
-		console.log(code[i] + " " + guess[i]);
 		if(code[i] == guess[i])
 		{
 			correct ++;
@@ -137,6 +134,7 @@ function checkCode(code, guess, codeLength)
 			}
 		}
 	};
+	//display pins
 	console.log(correct + " red pins");
 	console.log(almostCorrect + " white pins");
 	if(correct == 4) {
