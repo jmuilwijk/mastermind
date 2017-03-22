@@ -135,8 +135,21 @@ function checkCode(code, guess, codeLength)
 		}
 	};
 	//display pins
-	console.log(correct + " red pins");
-	console.log(almostCorrect + " white pins");
+	var red, white;
+	var tr = document.getElementById("tried").lastChild;
+	for (var k = 0; k < correct; k++) {
+		red = document.createElement("td");
+		red.classList.add("pos");
+		red.classList.add("circle");
+		red.style.cssText = 'background-color:red;';
+		tr.appendChild(red);
+	}
+	for (var l = 0; l < almostCorrect; l++) {
+		white = document.createElement("td");
+		white.classList.add("pos");
+		white.classList.add("circle");
+		tr.appendChild(white);
+	}
 	if(correct == 4) {
 		return true;
 	}
