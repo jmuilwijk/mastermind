@@ -99,21 +99,31 @@ function checkCode(code, guess, codeLength)
 {
 	var correct = 0;
 	var almostCorrect = 0;
+	var correctMark = [];
+	//step 1: check correct pins
+	//step 2: mark them to skip in further check
 	for (var i = 0; i < codeLength; i++) {
 		if(code[i] == guess[i])
 		{
 			correct ++;
+			correctMark.push(i)
+		}
+	}
+	//step 3: check almost correct pins
+	for (var j = 0; j < codeLength; j++) {
+		if(correctMark.includes(j) == true){
+			continue;
 		} else {
-			for (var j = 0; j < codeLength; j++) {
-				if(code[j] == guess[i])
+			for (var x = 0; x < codeLength; x++) {
+				if(code[j] == guess[x])
 				{
 					almostCorrect ++;
-					break;
 				}			
 			}
-		}
-	};
-	//display pins
+		} 		
+	}
+
+	//step 4: display pins
 	var red, white;
 	var tr = document.getElementById("tried").lastChild;
 	for (var k = 0; k < correct; k++) {
