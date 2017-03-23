@@ -6,11 +6,14 @@ table.container {
 	width: 25px;
 	height: 25px;
 	border: 1px solid black;
+	border-radius: 50%;
 }
 
 .inline {
 	display: inline-block;
 }
 .circle {
+	width: 17px;
+	border: 1px solid black;
 	border-radius: 50%;
 }

@@ -1,29 +1,36 @@
 //	1. var colors
 var colors = [
 		{
-			id:1,
+			//id:1,
 			color:"red"
 		},
 		{
-			id:2,
+			//id:2,
 			color:"blue"
 		},
 		{
-			id:3,
+			//id:3,
 			color:"yellow"
 		},
 		{
-			id:4,
+			//id:4,
 			color:"green"
 		},
 		{
-			id:5,
+			//id:5,
 			color:"purple"
 		},
 		{
-			id:6,
+			//id:6,
 			color:"orange"
 		}
+		/*
+		//could be expanded like this
+		,{
+			id:7,
+			color:"black"
+		}
+		*/
 ];
 //	var defining
 var code = [];
@@ -48,7 +55,8 @@ for(var i = 0; i < colors.length ; i++){
 	});
     button.setAttribute("id", i + 1);
     button.classList.add("pos");
-    button.style.cssText = 'background-color:' + colors[i].color;
+    //button.style.cssText = 'background-color:' + colors[i].color;
+    button.style.cssText = 'background-color:' + colors[i];
     document.getElementById("options").appendChild(button);
 }
 
@@ -66,7 +74,8 @@ function buildGuess(elm) {
 function displayGuess(colorId) {
 	var td = document.createElement("td")
 	td.classList.add("pos");
-	td.style.cssText = 'background-color:' + colors[colorId].color;
+	//td.style.cssText = 'background-color:' + colors[colorId].color;
+	td.style.cssText = 'background-color:' + colors[colorId];
 	document.getElementById("guess").appendChild(td);
 }
 
@@ -93,7 +102,8 @@ function pushGuess() {
 		x = guess[i]-1;
 		var td = document.createElement("td");
 		td.classList.add("pos");
-		td.style.cssText = 'background-color:' + colors[x].color;
+		//td.style.cssText = 'background-color:' + colors[x].color;
+		td.style.cssText = 'background-color:' + colors[x];
 		tr.appendChild(td);
 	};
 	document.getElementById("tried").appendChild(tr);
@@ -139,14 +149,12 @@ function checkCode(code, guess, codeLength)
 	var tr = document.getElementById("tried").lastChild;
 	for (var k = 0; k < correct; k++) {
 		red = document.createElement("td");
-		red.classList.add("pos");
 		red.classList.add("circle");
 		red.style.cssText = 'background-color:red;';
 		tr.appendChild(red);
 	}
 	for (var l = 0; l < almostCorrect; l++) {
 		white = document.createElement("td");
-		white.classList.add("pos");
 		white.classList.add("circle");
 		tr.appendChild(white);
 	}
@@ -158,4 +166,4 @@ function checkCode(code, guess, codeLength)
 
 // init app
 genCode(code, 4, colors.length);
-console.log(code);
+console.log(code); //-> cheat
