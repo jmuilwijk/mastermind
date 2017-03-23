@@ -1,37 +1,6 @@
 //	1. var colors
-var colors = [
-		{
-			//id:1,
-			color:"red"
-		},
-		{
-			//id:2,
-			color:"blue"
-		},
-		{
-			//id:3,
-			color:"yellow"
-		},
-		{
-			//id:4,
-			color:"green"
-		},
-		{
-			//id:5,
-			color:"purple"
-		},
-		{
-			//id:6,
-			color:"orange"
-		}
-		/*
-		//could be expanded like this
-		,{
-			id:7,
-			color:"black"
-		}
-		*/
-];
+var colors = ["red","blue","yellow","green","purple","orange"];
+
 //	var defining
 var code = [];
 var codeLength = 4;
