@@ -7,6 +7,7 @@ var codeLength = 4;
 var codeMax = colors.length;
 var guess = [];
 var buttonY, buttonN;
+var guessed = [];
 
 //	2. var combination (math random)
 function genCode(code, codeLength, codeMax) {
@@ -76,8 +77,7 @@ function pushGuess() {
 		tr.appendChild(td);
 	};
 	document.getElementById("tried").appendChild(tr);
-	if(checkCode(code, guess, codeLength) == true)
-	{
+	if(checkCode(code, guess, codeLength) == true) {
 		alert("victory");
 	} else {
 		cleanUp();
@@ -101,28 +101,30 @@ function checkCode(code, guess, codeLength)
 	var almostCorrect = 0;
 	var correctMark = [];
 	//step 1: check correct pins
-	//step 2: mark them to skip in further check
 	for (var i = 0; i < codeLength; i++) {
 		if(code[i] == guess[i])
 		{
 			correct ++;
-			correctMark.push(i)
+	//step 2: mark them to skip in further check
+			correctMark.push(i);
 		}
 	}
 	//step 3: check almost correct pins
 	for (var j = 0; j < codeLength; j++) {
-		if(correctMark.includes(j) == true){
+		if(correctMark.includes(j) == true) {
 			continue;
 		} else {
 			for (var x = 0; x < codeLength; x++) {
-				if(code[j] == guess[x])
-				{
-					almostCorrect ++;
+				if(code[j] == guess[x]) {
+					if(guessed.includes(guess[x]) !== true) {
+						almostCorrect ++;
+						guessed.push(guess[x]);
+						break;
+					}
 				}			
 			}
 		} 		
 	}
-
 	//step 4: display pins
 	var red, white;
 	var tr = document.getElementById("tried").lastChild;
@@ -145,4 +147,4 @@ function checkCode(code, guess, codeLength)
 
 // init app
 genCode(code, 4, colors.length);
-console.log(code); //-> cheat
+//console.log(code); //-> cheat
